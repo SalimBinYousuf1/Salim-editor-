@@ -1,0 +1,6 @@
+{
+  "name": "Salim",
+  "description": "Premium, production-ready Android text editor combining Apple simplicity, vivo one-handed control, and Samsung productivity.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

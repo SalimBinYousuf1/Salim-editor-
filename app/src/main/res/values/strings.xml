@@ -1,0 +1,121 @@
+<resources>
+    <string name="app_name">Salim</string>
+    <string name="app_subtitle">Silky, focused, and powerful text editing</string>
+
+    <!-- Navigation -->
+    <string name="nav_documents">Documents</string>
+    <string name="nav_quick_note">Quick Note</string>
+    <string name="nav_favorites">Favorites</string>
+    <string name="nav_trash">Trash</string>
+    <string name="nav_settings">Settings</string>
+
+    <!-- Home & Search -->
+    <string name="search_placeholder">Search notes, code, tags, text…</string>
+    <string name="search_no_results">No documents found</string>
+    <string name="action_new_document">New Document</string>
+    <string name="action_quick_note">Quick Note</string>
+    <string name="action_import_file">Open File</string>
+    <string name="action_sort">Sort &amp; Filter</string>
+    <string name="action_select">Select</string>
+    <string name="action_select_all">Select All</string>
+    <string name="action_deselect_all">Deselect All</string>
+
+    <!-- Categories & Filters -->
+    <string name="filter_all">All Notes</string>
+    <string name="filter_pinned">Pinned</string>
+    <string name="filter_favorites">Favorites</string>
+    <string name="filter_markdown">Markdown</string>
+    <string name="filter_code">Code</string>
+    <string name="filter_plain">Plain Text</string>
+    <string name="filter_folders">Folders</string>
+    <string name="filter_trash">Trash</string>
+
+    <!-- View Modes -->
+    <string name="view_mode_list">Standard List</string>
+    <string name="view_mode_compact">Compact List</string>
+    <string name="view_mode_grid">Grid Cards</string>
+
+    <!-- Sort Options -->
+    <string name="sort_modified_desc">Last Modified (Newest)</string>
+    <string name="sort_modified_asc">Last Modified (Oldest)</string>
+    <string name="sort_name_asc">Title (A to Z)</string>
+    <string name="sort_name_desc">Title (Z to A)</string>
+    <string name="sort_words_desc">Word Count (Most)</string>
+    <string name="sort_size_desc">File Size (Largest)</string>
+
+    <!-- Document Actions -->
+    <string name="action_open">Open</string>
+    <string name="action_rename">Rename</string>
+    <string name="action_move_folder">Move to Folder</string>
+    <string name="action_duplicate">Duplicate</string>
+    <string name="action_pin">Pin Document</string>
+    <string name="action_unpin">Unpin Document</string>
+    <string name="action_favorite">Add to Favorites</string>
+    <string name="action_unfavorite">Remove Favorite</string>
+    <string name="action_tags">Manage Tags</string>
+    <string name="action_export">Export &amp; Share</string>
+    <string name="action_delete">Move to Trash</string>
+    <string name="action_restore">Restore Document</string>
+    <string name="action_delete_permanent">Delete Permanently</string>
+    <string name="action_details">Document Details</string>
+    <string name="action_version_history">Version History</string>
+
+    <!-- Editor -->
+    <string name="editor_untitled">Untitled</string>
+    <string name="editor_saved">Saved</string>
+    <string name="editor_edited">Edited</string>
+    <string name="editor_save">Save</string>
+    <string name="editor_save_as">Save As…</string>
+    <string name="editor_undo">Undo</string>
+    <string name="editor_redo">Redo</string>
+    <string name="editor_find">Find</string>
+    <string name="editor_find_and_replace">Find &amp; Replace</string>
+    <string name="editor_find_hint">Find in document…</string>
+    <string name="editor_replace_hint">Replace with…</string>
+    <string name="editor_match_case">Match Case</string>
+    <string name="editor_replace_one">Replace</string>
+    <string name="editor_replace_all">Replace All</string>
+    <string name="editor_outline">Outline (TOC)</string>
+    <string name="editor_split_view">Split View</string>
+    <string name="editor_preview">Markdown Preview</string>
+    <string name="editor_preview_side">Side-by-side Preview</string>
+    <string name="editor_statistics">Statistics</string>
+    <string name="editor_word_count">Words</string>
+    <string name="editor_char_count">Characters</string>
+    <string name="editor_line_count">Lines</string>
+    <string name="editor_reading_time">Reading Time</string>
+    <string name="editor_format">Format</string>
+    <string name="editor_share">Share Text</string>
+
+    <!-- Markdown & Code Actions -->
+    <string name="action_bold">Bold</string>
+    <string name="action_italic">Italic</string>
+    <string name="action_heading">Heading</string>
+    <string name="action_list">Bullet List</string>
+    <string name="action_checklist">Checklist</string>
+    <string name="action_code_block">Code Block</string>
+    <string name="action_quote">Quote</string>
+    <string name="action_link">Link</string>
+    <string name="action_indent">Indent</string>
+    <string name="action_dedent">Dedent</string>
+    <string name="action_comment">Comment</string>
+
+    <!-- Settings & Personalization -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_presets">Presets</string>
+    <string name="settings_appearance">Appearance &amp; Theme</string>
+    <string name="settings_typography">Typography</string>
+    <string name="settings_editor">Editor Canvas</string>
+    <string name="settings_one_handed">One-Handed Reach</string>
+    <string name="settings_gestures">Gestures</string>
+    <string name="settings_continuity">Continuity &amp; Storage</string>
+    <string name="settings_about">About Salim</string>
+
+    <!-- Empty States -->
+    <string name="empty_home_title">No documents yet</string>
+    <string name="empty_home_desc">Tap + to start writing, or open an existing file from device storage.</string>
+    <string name="empty_trash_title">Trash is empty</string>
+    <string name="empty_trash_desc">Deleted documents are kept here and can be recovered anytime.</string>
+    <string name="empty_favorites_title">No favorites yet</string>
+    <string name="empty_favorites_desc">Star frequently accessed documents for quick one-tap opening.</string>
+</resources>

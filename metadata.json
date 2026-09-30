@@ -1,6 +1,6 @@
 {
   "name": "Salim",
-  "description": "Premium, production-ready Android text editor combining Apple simplicity, vivo one-handed control, and Samsung productivity.",
+  "description": "Salim File Manager featuring a built-in rich text & markdown editor with Apple simplicity, vivo one-handed control, and Samsung productivity.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

@@ -28,8 +28,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.ui.MainTabsScreen
 import com.example.ui.editor.EditorScreen
 import com.example.ui.editor.EditorViewModel
+import com.example.ui.files.FileManagerViewModel
 import com.example.ui.home.HomeScreen
 import com.example.ui.home.HomeViewModel
 import com.example.ui.settings.SettingsScreen
@@ -42,6 +44,7 @@ import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
 
+    private val fileManagerViewModel: FileManagerViewModel by viewModels()
     private val homeViewModel: HomeViewModel by viewModels()
     private val editorViewModel: EditorViewModel by viewModels()
     private val settingsViewModel: SettingsViewModel by viewModels()
@@ -97,16 +100,13 @@ class MainActivity : ComponentActivity() {
                         popExitTransition = { fadeOut(animationSpec = tween(180)) }
                     ) {
                         composable("home") {
-                            HomeScreen(
-                                viewModel = homeViewModel,
+                            MainTabsScreen(
+                                fileManagerViewModel = fileManagerViewModel,
+                                homeViewModel = homeViewModel,
+                                settingsViewModel = settingsViewModel,
+                                recycleBinViewModel = recycleBinViewModel,
                                 onOpenDocument = { docId ->
                                     navController.navigate("editor/$docId")
-                                },
-                                onNavigateToSettings = {
-                                    navController.navigate("settings")
-                                },
-                                onNavigateToTrash = {
-                                    navController.navigate("trash")
                                 }
                             )
                         }

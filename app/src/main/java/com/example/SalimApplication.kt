@@ -4,6 +4,7 @@ import android.app.Application
 import com.example.data.local.SalimDatabase
 import com.example.data.repository.DocumentRepository
 import com.example.data.repository.EditorPreferencesRepository
+import com.example.data.repository.FileManagerRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -18,6 +19,9 @@ class SalimApplication : Application() {
         private set
 
     lateinit var editorPreferencesRepository: EditorPreferencesRepository
+        private set
+
+    lateinit var fileManagerRepository: FileManagerRepository
         private set
 
     private val applicationScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
@@ -35,10 +39,16 @@ class SalimApplication : Application() {
             context = this
         )
 
+        fileManagerRepository = FileManagerRepository(
+            context = this,
+            documentRepository = documentRepository
+        )
+
         editorPreferencesRepository = EditorPreferencesRepository(this)
 
         applicationScope.launch {
             documentRepository.seedInitialDataIfNeeded()
+            fileManagerRepository.initializeStorage()
         }
     }
 

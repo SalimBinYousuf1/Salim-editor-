@@ -27,8 +27,10 @@ class ExampleUnitTest {
     @Test
     fun testWordCountMetrics() {
         val text = "The quick brown fox jumps over the lazy dog."
-        val count = text.trim().split(Regex("\\s+")).count { it.isNotBlank() }
-        assertEquals(9, count)
+        val stats = MarkdownParser.computeDetailedStats(text)
+        assertEquals(9, stats.wordCount)
+        assertEquals(44, stats.charCount)
+        assertEquals(36, stats.charNoSpaceCount)
     }
 
     @Test
@@ -41,8 +43,8 @@ class ExampleUnitTest {
     fun testDefaultEditorSettings() {
         val settings = EditorSettings()
         assertEquals(EditorThemeMode.SYSTEM, settings.themeMode)
-        assertEquals(EditorFont.SANS, settings.font)
-        assertEquals(16f, settings.fontSize, 0.01f)
+        assertEquals(EditorFont.SYSTEM_DEFAULT, settings.font)
+        assertEquals(14f, settings.fontSize, 0.01f)
         assertTrue(settings.wordWrap)
         assertTrue(settings.quickAccessoryBar)
     }

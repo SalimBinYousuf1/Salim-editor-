@@ -27,3 +27,14 @@ val SalimTextPrimary = Color(0xFF111111)
 val SalimTextSecondary = Color(0xFF6E6E73)
 val SalimTextTertiary = Color(0xFFA1A1A6)
 val SalimSelectionBackground = Color(0x14007AFF)
+
+object SalimThemeColors {
+    val isDark: Boolean = false
+    val background = SalimBackground
+    val surface = SalimSurface
+    val textPrimary = SalimTextPrimary
+    val textSecondary = SalimTextSecondary
+    val accent = SalimBlue
+    val divider = SalimDivider
+}
+

@@ -111,6 +111,18 @@
     <string name="settings_continuity">Continuity &amp; Storage</string>
     <string name="settings_about">About Salim</string>
 
+    <!-- File Manager -->
+    <string name="tab_files">Files</string>
+    <string name="internal_storage">Internal Storage</string>
+    <string name="folder_downloads">Downloads</string>
+    <string name="folder_documents">Documents</string>
+    <string name="folder_pictures">Pictures</string>
+    <string name="folder_dcim">Camera (DCIM)</string>
+    <string name="folder_music">Music</string>
+    <string name="action_paste">Paste Here</string>
+    <string name="action_compress">Compress to Zip</string>
+    <string name="action_extract">Extract Archive</string>
+
     <!-- Empty States -->
     <string name="empty_home_title">No documents yet</string>
     <string name="empty_home_desc">Tap + to start writing, or open an existing file from device storage.</string>

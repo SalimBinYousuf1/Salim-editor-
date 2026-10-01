@@ -1,7 +1,7 @@
 package com.example.ui.editor
 
 import androidx.compose.ui.graphics.Color
-import com.example.ui.theme.SalimCustomColors
+import com.example.ui.theme.EditorColors
 
 data class EditorColorScheme(
     val id: String,
@@ -160,7 +160,7 @@ object EditorThemes {
         searchMatchCurrent = Color(0xFFCB4B16)
     )
 
-    fun forAppTheme(custom: SalimCustomColors): EditorColorScheme {
+    fun forAppTheme(custom: EditorColors): EditorColorScheme {
         return if (custom.isDark) {
             OneDarkPro.copy(
                 background = custom.surface,

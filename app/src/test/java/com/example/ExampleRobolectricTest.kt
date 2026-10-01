@@ -1,5 +1,7 @@
 package com.example
 
+import com.example.data.repository.DiffType
+import com.example.data.repository.DocumentRepository
 import com.example.util.MarkdownParser
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
@@ -32,12 +34,22 @@ class ExampleRobolectricTest {
     }
 
     @Test
-    fun testMarkdownHtmlRendering() {
+    fun testMarkdownHtmlGeneration() {
         val md = "# Heading\n**Bold text** and *italic* and `code`"
-        val html = MarkdownParser.renderToHtml(md)
+        val html = MarkdownParser.generateHtml("Test Doc", md)
         assertTrue(html.contains("<h1>Heading</h1>"))
         assertTrue(html.contains("<strong>Bold text</strong>"))
         assertTrue(html.contains("<em>italic</em>"))
         assertTrue(html.contains("<code>code</code>"))
+    }
+
+    @Test
+    fun testDiffComputation() {
+        val oldText = "Line 1\nLine 2\nLine 3"
+        val newText = "Line 1\nLine 2 (edited)\nLine 3\nLine 4"
+
+        val diff = DocumentRepository.computeDiff(oldText, newText)
+        assertTrue(diff.any { it.type == DiffType.UNCHANGED && it.text == "Line 1" })
+        assertTrue(diff.any { it.type == DiffType.ADDED && it.text == "Line 4" })
     }
 }

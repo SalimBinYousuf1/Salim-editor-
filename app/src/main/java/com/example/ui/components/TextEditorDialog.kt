@@ -40,7 +40,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.Redo
 import androidx.compose.material.icons.automirrored.outlined.Undo
-import androidx.compose.material.icons.automirrored.outlined.WrapText
 import androidx.compose.material.icons.outlined.Close
 import androidx.compose.material.icons.outlined.Code
 import androidx.compose.material.icons.outlined.ContentCopy
@@ -504,7 +503,7 @@ fun TextEditorDialog(
                                 )
                                 DropdownMenuItem(
                                     text = { Text(if (wordWrap) "Disable Word Wrap" else "Enable Word Wrap") },
-                                    leadingIcon = { Icon(Icons.AutoMirrored.Outlined.WrapText, contentDescription = null) },
+                                    leadingIcon = { Icon(Icons.Outlined.WrapText, contentDescription = null) },
                                     onClick = {
                                         showMoreMenu = false
                                         wordWrap = !wordWrap

@@ -3,6 +3,6 @@
     <item
         android:width="66dp"
         android:height="66dp"
-        android:drawable="@drawable/salim_icon"
+        android:drawable="@drawable/salim_editor_icon_1790526324696"
         android:gravity="center" />
 </layer-list>

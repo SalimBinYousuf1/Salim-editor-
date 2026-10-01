@@ -59,11 +59,8 @@ fun RecycleBinScreen(
     onBack: () -> Unit
 ) {
     val documents by viewModel.trashedDocuments.collectAsState()
-    val trashedFiles by viewModel.trashedFiles.collectAsState()
     val colors = LocalEditorColors.current
     var showEmptyConfirm by remember { mutableStateOf(false) }
-
-    val totalCount = documents.size + trashedFiles.size
 
     Column(
         modifier = Modifier
@@ -87,13 +84,13 @@ fun RecycleBinScreen(
             }
             Spacer(modifier = Modifier.width(4.dp))
             Text(
-                text = "Recycle Bin",
+                text = "Recently Deleted",
                 fontSize = 19.sp,
                 fontWeight = FontWeight.Bold,
                 color = colors.textPrimary,
                 modifier = Modifier.weight(1f)
             )
-            if (totalCount > 0) {
+            if (documents.isNotEmpty()) {
                 TextButton(onClick = { viewModel.restoreAll() }) {
                     Text("Restore All", color = colors.accent, fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
                 }
@@ -107,7 +104,7 @@ fun RecycleBinScreen(
             }
         }
 
-        if (totalCount == 0) {
+        if (documents.isEmpty()) {
             Box(
                 modifier = Modifier
                     .fillMaxSize()
@@ -126,14 +123,14 @@ fun RecycleBinScreen(
                     }
                     Spacer(modifier = Modifier.height(14.dp))
                     Text(
-                        text = "Recycle Bin is Empty",
+                        text = "Trash is Empty",
                         fontSize = 17.sp,
                         fontWeight = FontWeight.SemiBold,
                         color = colors.textPrimary
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
-                        text = "Deleted files and documents are safely stored here and can be restored anytime.",
+                        text = "Deleted documents are moved here and can be recovered anytime.",
                         fontSize = 13.sp,
                         color = colors.textSecondary,
                         textAlign = androidx.compose.ui.text.style.TextAlign.Center
@@ -146,42 +143,12 @@ fun RecycleBinScreen(
                 verticalArrangement = Arrangement.spacedBy(8.dp),
                 modifier = Modifier.fillMaxSize()
             ) {
-                if (trashedFiles.isNotEmpty()) {
-                    item {
-                        Text(
-                            text = "DEVICE FILES (${trashedFiles.size})",
-                            fontSize = 12.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = colors.textTertiary,
-                            modifier = Modifier.padding(vertical = 4.dp)
-                        )
-                    }
-                    items(trashedFiles, key = { it.file.absolutePath }) { item ->
-                        TrashedFileItem(
-                            item = item,
-                            onRestore = { viewModel.restoreFile(item.file) },
-                            onDeletePermanent = { viewModel.deletePermanentlyFile(item.file) }
-                        )
-                    }
-                }
-
-                if (documents.isNotEmpty()) {
-                    item {
-                        Text(
-                            text = "DOCUMENTS & NOTES (${documents.size})",
-                            fontSize = 12.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = colors.textTertiary,
-                            modifier = Modifier.padding(top = 12.dp, bottom = 4.dp)
-                        )
-                    }
-                    items(documents, key = { it.id }) { doc ->
-                        TrashedDocumentItem(
-                            document = doc,
-                            onRestore = { viewModel.restoreDocument(doc.id) },
-                            onDeletePermanent = { viewModel.deletePermanently(doc.id) }
-                        )
-                    }
+                items(documents, key = { it.id }) { doc ->
+                    TrashedDocumentItem(
+                        document = doc,
+                        onRestore = { viewModel.restoreDocument(doc.id) },
+                        onDeletePermanent = { viewModel.deletePermanently(doc.id) }
+                    )
                 }
             }
         }
@@ -190,8 +157,8 @@ fun RecycleBinScreen(
     if (showEmptyConfirm) {
         AlertDialog(
             onDismissRequest = { showEmptyConfirm = false },
-            title = { Text("Empty Recycle Bin?") },
-            text = { Text("All $totalCount deleted item(s) will be permanently deleted. This action cannot be undone.") },
+            title = { Text("Empty Trash?") },
+            text = { Text("All ${documents.size} deleted documents will be permanently removed. This cannot be undone.") },
             confirmButton = {
                 Button(
                     onClick = {
@@ -209,86 +176,6 @@ fun RecycleBinScreen(
                 }
             }
         )
-    }
-}
-
-@Composable
-fun TrashedFileItem(
-    item: com.example.data.repository.TrashedFileInfo,
-    onRestore: () -> Unit,
-    onDeletePermanent: () -> Unit
-) {
-    val colors = LocalEditorColors.current
-    val dateFormat = remember { SimpleDateFormat("MMM d, yyyy HH:mm", Locale.getDefault()) }
-
-    Surface(
-        shape = RoundedCornerShape(12.dp),
-        color = colors.surface,
-        border = androidx.compose.foundation.BorderStroke(1.dp, colors.cardBorder),
-        modifier = Modifier.fillMaxWidth()
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(14.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Surface(
-                shape = RoundedCornerShape(8.dp),
-                color = colors.secondarySurface,
-                modifier = Modifier.size(38.dp)
-            ) {
-                Box(contentAlignment = Alignment.Center) {
-                    Icon(
-                        imageVector = if (item.isDirectory) Icons.Default.Delete else Icons.Default.DeleteForever,
-                        contentDescription = null,
-                        tint = colors.textSecondary,
-                        modifier = Modifier.size(20.dp)
-                    )
-                }
-            }
-
-            Spacer(modifier = Modifier.width(12.dp))
-
-            Column(modifier = Modifier.weight(1f)) {
-                Text(
-                    text = item.originalName,
-                    fontWeight = FontWeight.SemiBold,
-                    fontSize = 15.sp,
-                    color = colors.textPrimary,
-                    maxLines = 1
-                )
-                Text(
-                    text = "${item.formattedSize} • Deleted ${dateFormat.format(Date(item.trashedAt))}",
-                    fontSize = 11.sp,
-                    color = colors.textSecondary
-                )
-                Text(
-                    text = "Orig: ${item.originalPath}",
-                    fontSize = 10.sp,
-                    color = colors.textTertiary,
-                    maxLines = 1
-                )
-            }
-
-            IconButton(onClick = onRestore, modifier = Modifier.size(36.dp)) {
-                Icon(
-                    imageVector = Icons.Default.Restore,
-                    contentDescription = "Restore",
-                    tint = colors.accent,
-                    modifier = Modifier.size(20.dp)
-                )
-            }
-
-            IconButton(onClick = onDeletePermanent, modifier = Modifier.size(36.dp)) {
-                Icon(
-                    imageVector = Icons.Default.DeleteForever,
-                    contentDescription = "Delete Forever",
-                    tint = Color(0xFFEF4444),
-                    modifier = Modifier.size(20.dp)
-                )
-            }
-        }
     }
 }
 
